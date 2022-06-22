@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/style_face_detect.css">
+    
+    <!-- Bootstrap Font Icon CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <button type="button" class="m-5 btn btn-outline-success" title="Go Back"><i class="bi bi-arrow-left"></i></button>
+    <div class="container my-5 px-0 heading shadow bg-body rounded">
+        <div class="text-center row m-0 text-bg-secondary rounded-top">
+            <h4>Face Detect</h4>
+        </div>
+        <div class="container p-2 text-center" id="cam-div">
+            <img src="{{ url_for('video') }}" id="cam-img" alt="web cam not found">
+            <!-- <img src="../Student images/190111115.jpeg" id="cam-img" alt="web cam not found"> -->
+        </div>
+        <div class="container mt-4 px-0" id="button-div">
+            WORK PENDING
+            <a href="{{ url_for('detect') }}"><button type="button" class="btn btn-outline-success" id="button" title="Click Here When Face is Detected">Detect Face</button></a>
+            <!-- <button type="button" class="btn btn-outline-success" id="button" title="Click Here When Face is Detected" onclick="redirect()">Detect Face</button> -->
+            <p id="alert">*No Face Detected</p>                
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <!-- my JS -->
+    <script>
+        function redirect(){
+            if( "{{ detected_face }}" == ''){
+                alert("No Face Detected");
+            }else{
+                alert("face detected");
+            }
+        }
+    </script>
+</body>
+</html>
