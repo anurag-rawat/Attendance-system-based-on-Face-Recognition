@@ -15,7 +15,7 @@ face_name = ''
 
 def set_globals():
     global images_path, list_of_names
-    images_path = './Student images'
+    images_path = './static/Student images'
     list_of_names = os.listdir(images_path)
     # for file in os.listdir(images_path):
     #     list_of_names.append(file) 
@@ -36,8 +36,15 @@ def find_encodings():
 
 def generate_frame():
     set_globals()
-    load_images_from_disk()
-    find_encodings()
+    if not known_face:
+        load_images_from_disk()
+    else:
+        print("Images Already Loaded")
+    # print("Face Encodings: ",known_face_encodings)
+    if not known_face_encodings :
+        find_encodings()
+    else:
+        print("Images Already Encoded")
     camera = cv2.VideoCapture(0)
     while True:
         success, frame = camera.read()
@@ -65,9 +72,9 @@ def generate_frame():
                     top, right, bottom, left = faceloc
                     top, right, bottom, left = top*4, right*4, bottom*4, left*4
 
-                    cv2.rectangle(frame, (left, top), (right, bottom), (0,125,255), 1)
-                    cv2.rectangle(frame, (left, bottom-25), (right, bottom), (0,125,255), 1)
-                    cv2.putText(frame, face_name, (left+6, bottom-6), cv2.FONT_HERSHEY_COMPLEX, 1.0, (255,255,255), 1)
+                    cv2.rectangle(frame, (left, top), (right, bottom), (0,0,255), 1)
+                    cv2.rectangle(frame, (left, bottom-25), (right, bottom), (0,0,255), -1)
+                    cv2.putText(frame, face_name, (left+6, bottom-6), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.0, (255,255,255), 1)
                 
     
             print(face_name)
@@ -85,7 +92,7 @@ def face_detected():
 
 def mark_attendance(face_name):
     if face_name != '':
-        file_path = './Attendance'
+        file_path = './static/Attendance'
         try:
             with open(f'{file_path}/{str(date.today()) + ".csv"}', 'r+' ) as f:
                 myattendance_list = f.readlines()
@@ -101,7 +108,7 @@ def mark_attendance(face_name):
                     return 1
                 else:
                     print("Already marked")
-                    return 0
+                    return 2
         except Exception as ex:
             print("EXCEPTION OCCURED :: ", ex)
             with open(f'{file_path}/{str(date.today()) + ".csv"}', 'a' ) as f:
