@@ -1,4 +1,5 @@
 flask
+flask_sqlalchemy
 opencv-python
 face-recognition
 numpy

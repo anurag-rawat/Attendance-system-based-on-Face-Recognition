@@ -37,7 +37,7 @@ def video():
 def detect():
     global detected_face
     print("Face Detected : ",face_detected())
-    stu_details = 'anurag'
+    stu_details = ''
     detected_face = face_detected()
     if detected_face != '':
         print("no im here")
@@ -46,8 +46,9 @@ def detect():
         return render_template('profile.html',stu_details = stu_details)
     else:
         print("Im here")
-        return redirect(url_for('index'))
-        # return render_template('')
+        # return Response()
+        # return redirect(url_for('index'))
+        return render_template('face_detect.html', noface = True)
         # return render_template('profile.html',stu_details = stu_details)
         
 
@@ -55,13 +56,16 @@ def detect():
 def mark():
     print(detected_face)
     res = mark_attendance(detected_face)
+    # curr_student = ''
+    curr_student = Student.query.filter_by(univ_id=face_detected()).first()
     if res == 1:
-        curr_student = Student.query.filter_by(univ_id=face_detected()).first()
         curr_student.attendance = curr_student.attendance + 1
         db.session.commit()
-        return "attendance marked"
+        # return "attendance marked"
+        return render_template('profile.html', stu_details = curr_student, status = res)
     else:
-        return "attendance already marked"
+        # return "attendance already marked"
+        return render_template('profile.html', stu_details = curr_student, status = res)
 
 if __name__ == '__main__':
     app.run(debug=True)
