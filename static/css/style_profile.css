@@ -22,8 +22,16 @@ body{
 }
 
 .student-img{
-    width: 16vw;
-    height: 40vh;
+    width: 250px;
+    height: 300px;
     object-fit: fill;
+}
+
+#attendance-success{
+    color: green;
+}
+
+#attendance-error{
+    color: red;
 }
 
