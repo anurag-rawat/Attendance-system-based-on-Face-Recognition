@@ -1,5 +1,4 @@
 from flask import Flask, Response, redirect, render_template, request, url_for
-from sqlalchemy import null, true
 from face_rec import generate_frame, mark_attendance, face_detected
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
@@ -99,13 +98,13 @@ def add():
         db.session.commit()
         lstpic=request.files['StudentPic']
         lstpic.save(os.path.join(app.config['UPLOAD_FOLDER'],luniv_id+'.jpeg'))
-        return render_template('add.html')
+        return render_template('add.html', status_add=True)
     else:
         return render_template('add.html')
 
 
-@app.route("/modify",methods=["GET","POST"])
-def modify():
+@app.route("/update",methods=["GET","POST"])
+def update():
     if(request.method=="POST"):
         luniv_id = request.form.get('UniversityId')
         lname=request.form.get('Name')
@@ -124,41 +123,44 @@ def modify():
         lsection=request.form.get('Section')
         lcroll_no=request.form.get('ClassRno')
         student=Student.query.filter_by(univ_id=luniv_id).first()
-        # print("data:",lgen)
-        if(lname!=""):
-            student.name=lname
-        if(ldob!=""):
-            student.dob=ldob
-        if(laddress!=""):
-            student.address=laddress
-        if(lfather!=""):
-            student.father=lfather
-        if(lmobile!=""):
-            student.ph_no=lmobile
-        if(lcity!=""):
-            student.city=lcity
-        if(lzip!=""):
-            student.zipcode=lzip
-        if(lstate!=""):
-            student.state=lstate
-        if(luniversity!=""):
-            student.university=luniversity
-        if(lsection!=""):
-            student.sec=lsection
-        if(lcroll_no!=""):
-            student.croll_no=lcroll_no
-        if(lsem!=""):
-            student.sem=lsem
-        if(lcourse!=""):
-            student.course=lcourse
-        if(lemail!=""):
-            student.email=lemail
-        if(lgen != None):
-            student.gen=lgen
-        db.session.commit()
-        return render_template('modify.html')
+
+        if(not student ):
+            return render_template('update.html', status_update=False)
+        else:
+            if(lname!=""):
+                student.name=lname
+            if(ldob!=""):
+                student.dob=ldob
+            if(laddress!=""):
+                student.address=laddress
+            if(lfather!=""):
+                student.father=lfather
+            if(lmobile!=""):
+                student.ph_no=lmobile
+            if(lcity!=""):
+                student.city=lcity
+            if(lzip!=""):
+                student.zipcode=lzip
+            if(lstate!=""):
+                student.state=lstate
+            if(luniversity!=""):
+                student.university=luniversity
+            if(lsection!=""):
+                student.sec=lsection
+            if(lcroll_no!=""):
+                student.croll_no=lcroll_no
+            if(lsem!=""):
+                student.sem=lsem
+            if(lcourse!=""):
+                student.course=lcourse
+            if(lemail!=""):
+                student.email=lemail
+            if(lgen != None):
+                student.gen=lgen
+            db.session.commit()
+            return render_template('update.html', status_update=True)
     else:
-        return render_template('modify.html')
+        return render_template('update.html')
 
 
 @app.route("/contact",methods=["GET","POST"])
