@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body>
-    <a href="{{ url_for('index') }}"><button type="button" class="m-5 btn btn-outline-success" title="Go Back"><i class="bi bi-arrow-left"></i></button></a>
+    <a href="{{ url_for('face_detect') }}"><button type="button" class="m-5 btn btn-outline-success" title="Go Back"><i class="bi bi-arrow-left"></i></button></a>
     <div class="container my-5 p-0 shadow bg-body rounded">
         <div class="text-center mx-0 mb-4 row text-bg-secondary rounded-top">
             <h4>Student Info</h4>
@@ -48,6 +48,47 @@
                         <div class="row m-0">Phone No. : </div>
                         <div class="row m-0">
                             <input type="text" name="name" class="input-text" value="{{ stu_details.ph_no }}" disabled>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row m-0 my-2">
+                    <div class="col-6">
+                        <div class="row m-0">Father's Name</div>
+                        <div class="row m-0">
+                            <input type="text" name="name" class="input-text" value="{{ stu_details.father }}" disabled>    
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row m-0">Address</div>
+                        <div class="row m-0">
+                            <input type="text" name="name" class="input-text" value="{{ stu_details.address }}" disabled>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row m-0 my-2">
+                    <div class="col-6">
+                        <div class="row m-0">City</div>
+                        <div class="row m-0">
+                            <input type="text" name="name" class="input-text" value="{{ stu_details.city }}" disabled>    
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="row m-0">State</div>
+                                <div class="row m-0">
+                                    <input type="text" name="name" class="input-text" value="{{ stu_details.state }}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="row m-0">Zip Code</div>
+                                <div class="row m-0">
+                                    <input type="text" name="name" class="input-text" value="{{ stu_details.zipcode }}" disabled>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -88,44 +129,50 @@
                 </div>
                 <div class="row m-0 my-2">
                     <div class="col-6">
+                        <div class="row m-0">University</div>
+                        <div class="row m-0">
+                            <input type="text" name="course" class="input-text" value="{{ stu_details.university }}" disabled>
+                        </div>
+                    </div>  
+                    <div class="col-6">
                         <div class="row m-0">Course</div>
                         <div class="row m-0">
                             <input type="text" name="course" class="input-text" value="{{ stu_details.course }}" disabled>
                         </div>
                     </div>  
+                </div>
+                <div class="row m-0 my-2">
                     <div class="col-6">
                        <div class="row m-0">Year/Sem</div>
                        <div class="row m-0">
-                           <input type="number" name="sem" class="input-text" value="{{ stu_details.sem }}" disabled>
+                           <input type="text" name="sem" class="input-text" value="{{ stu_details.sem }}" disabled>
                         </div>
                     </div>
-                </div>
-                <div class="row m-0 my-2">
                     <div class="col-6">
                         <div class="row m-0">Section</div>
                         <div class="row m-0">
                             <input type="text" name="sec" class="input-text" value="{{ stu_details.sec }}" disabled>
                         </div>
                     </div>  
-                    <div class="col-6">
-                       <div class="row m-0">Class Roll No.</div>
-                        <div class="row m-0">
-                            <input type="text" name="croll" class="input-text" value="{{ stu_details.croll_no }}" disabled>
-                        </div>
-                    </div>
                 </div>
                 <div class="row m-0">
                     <div class="col-6">
+                    <div class="row m-0">Class Roll No.</div>
+                    <div class="row m-0">
+                        <input type="text" name="croll" class="input-text" value="{{ stu_details.croll_no }}" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
                         <div class="row m-0">Attendance</div>
                         <div class="row m-0">
-                            <input type="number" name="attendance" class="input-text" value="{{ stu_details.attendance }}" disabled >
+                            <input type="text" name="attendance" class="input-text" value="{{ stu_details.attendance }}" disabled >
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-3 py-2 px-2">
                 <div class="student-img-div">
-                    <img src="../static/Student images/{{ stu_details.univ_id }}.jpeg" class="student-img shadow bg-body" alt="student image">
+                    <img src="../static/images/Student images/{{ stu_details.univ_id }}.jpeg" class="student-img shadow bg-body" alt="student image">
                 </div>
             </div>
         </div>
