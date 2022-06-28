@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body>
-    <a href="{{ url_for('face_detect') }}"><button type="button" class="m-5 btn btn-outline-success" title="Go Back"><i class="bi bi-arrow-left"></i></button></a>
-    <div class="container my-5 px-0 heading shadow bg-body rounded">
+    <a href="{{ url_for('face_detect') }}"><button type="button" class="m-3 btn btn-outline-dark" title="Go Back"><i class="bi bi-arrow-left"></i></button></a>
+    <div class="container my-3 px-0 heading shadow bg-body rounded">
         <div class="text-center row m-0 text-bg-secondary rounded-top">
-            <h4>Face Detect</h4>
+            <h4>Detecting Face...</h4>
         </div>
         <div class="container p-2 text-center" id="cam-div">
             <img src="{{ url_for('video') }}" id="cam-img" alt="web cam not found">
