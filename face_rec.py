@@ -15,7 +15,7 @@ face_name = ''
 
 def set_globals():
     global images_path, list_of_names
-    images_path = './static/Student images'
+    images_path = './static/images/Student images'
     list_of_names = os.listdir(images_path)
     # for file in os.listdir(images_path):
     #     list_of_names.append(file) 
