@@ -1,0 +1,19 @@
+body{
+    background-color:papayawhip;
+}
+
+.form_layout{
+    position: absolute;
+    top:25%;
+    left:25%;
+    width:50%;
+    background-color: white;
+    box-shadow: 5px 5px 10px grey;
+}
+.warning{
+    color: red;
+}
+input{
+    border: none;
+}
+

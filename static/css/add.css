@@ -1,0 +1,10 @@
+body{
+    background-color: papayawhip;
+}
+
+.form-control{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}

@@ -1,0 +1,18 @@
+.contactbox{
+    width:80%;
+    position: absolute;
+    top:10%;
+    left:10%;
+    box-shadow: 5px 5px 10px grey;
+    padding: 0px 10px;
+}
+input[type="text"]{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+textarea[type="text"]{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
