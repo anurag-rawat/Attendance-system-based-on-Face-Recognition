@@ -8,33 +8,28 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="../static/css/style_face_detect.css">
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body>
     <a href="{{ url_for('home') }}"><button type="button" class="m-3 btn btn-outline-dark" title="Home"><i class="bi bi-house-door-fill"></i></button></a>
-    <div class="container form_layout">
-        <div class="container tagline">
-            <h2>
-                <pre>                   Welcome 
-                    To 
-            Smart Attendance System</pre>
-            </h2>
+    <div class="container my-3 px-0 heading shadow bg-body rounded">
+        <div class="text-center row m-0 text-bg-secondary rounded-top">
+            <h4>Detecting Face...</h4>
         </div>
-        <form action="/login" method="post">
-            <div class="form-floating mb-3">
-                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">User Id</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <h6 class="warning text-center">{{errmsg}}</h6>
-            <button type="submit" class="btn btn-success py-2 p-4 mx-2 my-2">LOGIN</button>
-            <button type="reset" class="btn btn-success py-2 p-4 mx-2 my-2">RESET</button>
-        </form>
+        <div class="container p-2 text-center" id="cam-div">
+            <img src="{{ url_for('video',user='admin') }}" id="cam-img" alt="Loading web cam ....">
+            <!-- <img src="../Student images/190111115.jpeg" id="cam-img" alt="web cam not found"> -->
+        </div>
+        <div class="container mt-2 px-0" id="button-div">
+            <h6>*Click Here when there is any face detected</h6>
+            <a href="{{ url_for('detect', user='admin') }}"><button type="button" class="btn btn-outline-success" id="button" title="Click Here When Face is Detected">Login</button></a>
+            <!-- <button type="button" class="btn btn-outline-success" id="button" title="Click Here When Face is Detected" onclick="redirect()">Detect Face</button> -->
+            {% if noface %}
+            <p id="alert">*No Face Detected</p>
+            {% endif %}
+        </div>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
