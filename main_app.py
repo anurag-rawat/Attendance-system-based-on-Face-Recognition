@@ -105,7 +105,7 @@ def detect(user):
             return render_template('userhome.html',admin=admin)
         else:
             print("Im here")
-            return render_template('userhome.html', noface = True)
+            return render_template('login.html', noface = True)
             # return render_template('profile.html',stu_details = stu_details)
     else:
         return redirect(url_for('home'))
