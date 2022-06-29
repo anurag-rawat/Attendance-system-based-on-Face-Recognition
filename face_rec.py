@@ -13,12 +13,13 @@ known_face_names = []
 list_of_names = []
 face_name = ''
 
-def set_globals():
+def set_globals(user):
     global images_path, list_of_names
-    images_path = './static/images/Student images'
+    if user == 'student':
+        images_path = './static/images/Student images'
+    else:
+        images_path = './static/images/admin'
     list_of_names = os.listdir(images_path)
-    # for file in os.listdir(images_path):
-    #     list_of_names.append(file) 
 
 
 def load_images_from_disk():
@@ -34,8 +35,8 @@ def find_encodings():
         known_face_encodings.append(face_encode)
     print("Encoding Done")
 
-def generate_frame():
-    set_globals()
+def generate_frame(user):
+    set_globals(user)
     if not known_face:
         load_images_from_disk()
     else:
