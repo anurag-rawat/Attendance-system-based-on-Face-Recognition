@@ -14,19 +14,18 @@
     
     <style>
       .userimage{
-        background-image: url({{imageurl}});
+        background-image: url('../static/images/admin/{{ admin.admin_id }}.jpeg');
       }
     </style>
 
 </head>
 <body>
-  <a href="{{ url_for('home') }}"><button type="button" class="m-3 btn btn-outline-dark" title="Home"><i class="bi bi-house-door-fill"></i></button></a>
-  <a href="{{ url_for('login') }}"><button class="btn btn-outline-dark">LOG OUT</button></a>
+  <a href="{{ url_for('home') }}"><button class="m-4 btn btn-outline-danger">LOG OUT</button></a>
 
   <div class="container main_content">
       <din class="userimage my-2">
       </din>
-      <p class="tagline">Welcome {{name}} to Admin Portal</p>
+      <p class="tagline">Welcome {{ admin.name }} to Admin Portal</p>
       <div class="service_gallery my-3">
           <div class="card mx-2 my-2" style="width: 18rem;">
               <img class="card-img-top" src="../static/images/usercardimages/add1.png" alt="Card image cap">
