@@ -14,7 +14,8 @@ body{
     margin: auto;
 }
 
-.input-text{
+input[type="text"], input[type="date"]{
+    background-color: white;
     border-bottom: 1px solid rgb(130, 130, 130);
     border-top: none;
     border-left: none;
