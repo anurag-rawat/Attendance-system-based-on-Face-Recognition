@@ -120,8 +120,9 @@
       </div>
     </form>
     {% if status_update %}
-      <h6 class="text-center" style="color:green;">*Student Details Updated Succesfully*</h6>    
-      {% else %}
+    <h6 class="text-center" style="color:green;">*Student Details Updated Succesfully*</h6>    
+    {% endif %}
+    {% if not status_update %}
       <h6 class="text-center" style="color:red;">*No Student Found*</h6>    
     {% endif %}
   </div>
