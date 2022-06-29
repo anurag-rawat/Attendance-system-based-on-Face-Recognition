@@ -10,11 +10,11 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <!-- Voice Recognition JS -->
+    <script src="../static/javascript/voice_recognition.js" defer></script>
 </head>
 <body>
-
-
     <!---Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -28,10 +28,18 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#">Attendance</a>
+                <a class="nav-link" href="{{ url_for('face_detect') }}">Attendance</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('login') }}">Admin_Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
               </li>
             </ul>
-            <a href="{{ url_for('login') }}"><button class="btn btn-outline-success">ADMIN LOGIN</button></a>
+            <form class="form-inline my-2 my-lg-0" action="/" method="post" id="search-form">
+              <input class="form-control mr-sm-2" name="query" type="text" placeholder="Search Google..." autocomplete="off" autofocus>
+            </form>
           </div>
         </div>
       </nav>
@@ -75,19 +83,37 @@
               </div>
               <div class="col-6">
                 <h2>For Students</h2>
-                <h5>This system allows student to mark their Attendance securely</h4>
-                <h5>In order to mark Attendance the student first have to verify their identity by simply showing their face, after which student details will be shown up where the student can check them and mark their attendance.</h3>
+                <h5>This system allows student to mark their Attendance securely</h5>
+                <h5>Key Features:</h5>
+                  <ul>
+                    <li>Accurate Face Detection</li>
+                    <li>Easy and less time consuming</li>
+                    <li>Accessibility to attendance status</li>
+                  </ul>
                 <a href="{{ url_for('face_detect') }}"><button class="btn btn-outline-dark">Mark Your Today's Attendance</button></a>
               </div>
           </div>
-
-        
-
+          <div class="row mt-4">
+            <div class="col-6">
+              <h2>For Adminstators</h2>
+              <h5>This system allows admins to manage students details with a simple user interface</h5>
+              <h5>Key Features:</h5>
+              <ul>
+                <li>Login using face recognition</li>
+                <li>Add new student in Database</li>
+                <li>Update Student Details</li>
+                <li>Delete student record</li>
+              </ul>
+              <a href="{{ url_for('login') }}"><button class="btn btn-outline-dark">Login</button></a>
+            </div>
+            <div class="col-6">
+            <img src="../static/images/indeximages/student.png" width="100%">
+            </div>
+          </div>
+          
+          
+          
       </div>
-      <!-- GRID -->
-
-
-      <!-- footer -->
       <!-- Footer -->
 <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
@@ -124,25 +150,21 @@
           ><i class="fa fa-github"></i
         ></a>
       </section>
-      <!-- Section: Social media -->
-  
-      <!-- Section: Form -->
       <section class="">
         <form action="/contact">
           <!--Grid row-->
           <div class="row d-flex justify-content-center">
             <!--Grid column-->
             <div class="col-auto">
-              <p class="pt-2">
-                <strong>Sign up for our newsletter</strong>
+              <p>
+                <strong>For any query : </strong>
               </p>
             </div>
-            <!--Grid column-->
             <!--Grid column-->
             <div class="col-auto">
               <!-- Submit button -->
               <a href="{{url_for('contact')}}">
-                <button class="btn btn-outline-light mb-4">
+                <button class="btn btn-outline-light btn-sm mb-2">
                 Contact Us
               </button>
               </a>
@@ -153,120 +175,17 @@
         </form>
       </section>
       <!-- Section: Form -->
-  
-      <!-- Section: Text -->
-      <section class="mb-4">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-          repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-          eum harum corrupti dicta, aliquam sequi voluptate quas.
-        </p>
-      </section>
-      <!-- Section: Text -->
-  
-      <!-- Section: Links -->
-      <section class="">
-        <!--Grid row-->
-        <div class="row">
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Links</h5>
-  
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <!--Grid column-->
-  
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Links</h5>
-  
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <!--Grid column-->
-  
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Links</h5>
-  
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <!--Grid column-->
-  
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Links</h5>
-  
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </section>
-      <!-- Section: Links -->
     </div>
     <!-- Grid container -->
   
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      © 2022 Copyright:
+      <a class="text-white" href="/">MDBootstrap.com</a>
     </div>
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-      <!-- footer -->
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
