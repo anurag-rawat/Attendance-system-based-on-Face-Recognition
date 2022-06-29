@@ -1,3 +1,4 @@
+import webbrowser
 from flask import Flask, Response, redirect, render_template, request, url_for
 from face_rec import generate_frame, mark_attendance, face_detected
 from flask_sqlalchemy import SQLAlchemy
@@ -14,8 +15,8 @@ db = SQLAlchemy(app)
 # Mail Configuration
 app.config['MAIL_SERVER'] ='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'hdevrani81@gmail.com'
-app.config['MAIL_PASSWORD'] = 'rbijrrcrbndojepy'
+app.config['MAIL_USERNAME'] = 'anurazsingh001@gmail.com'
+app.config['MAIL_PASSWORD'] = 'macwrnbupbslstlk'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail=Mail(app);
@@ -44,35 +45,86 @@ class Student(db.Model):
     zipcode = db.Column(db.Integer,nullable=False)
     university = db.Column(db.String(30),nullable=False)
 
-    def __repr__(self) -> str:
-        return f'{self.univ_id} - {self.name}'
-
-class User(db.Model):
-    username=db.Column(db.String(30),primary_key=True)
-    password=db.Column(db.String(30))
+class Admin(db.Model):
+    admin_id=db.Column(db.String(30),primary_key=True)
+    name=db.Column(db.String(30),nullable=False)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template('index.html')
-
-@app.route("/login",methods=["GET","POST"])
-def login():
     if(request.method=="POST"):
-        name=request.form.get('username')
-        password=request.form.get('password')
-        person=User.query.filter_by(username=name).first()
-        if(person is None):
-            return render_template('login.html',errmsg="Not a valid username")
-        else:   
-            if(person.password!=password):
-                return render_template('login.html',errmsg="Wrong password please try again")
-            else:
-                filename=name+".jpg"
-                path=os.path.join("static/images/user/",filename)
-                return render_template('userhome.html',name=name,imageurl=path)
+        searchtext=request.form.get('query')
+        if(searchtext=='mark attendance'):
+            return render_template('face_detect.html')
+        elif(searchtext=='contact us'):
+            return render_template('contact.html')
+        elif(searchtext=='login'):
+            return render_template('login.html')
+        else:
+            webbrowser.open_new_tab("https://www.google.com/search?q="+searchtext)
+            return render_template('index.html')
     else:
-        return render_template('login.html')
+        return render_template('index.html')
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+@app.route('/face_detect')
+def face_detect():
+    return render_template('face_detect.html')
+
+@app.route('/video/<string:user>')
+def video(user):
+    return Response(generate_frame(user),mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/detect/<string:user>')
+def detect(user):
+    global detected_face
+    if user == 'student':
+        print("Face Detected : ",face_detected())
+        stu_details = None
+        detected_face = face_detected()
+        if detected_face != '':
+            print("no im here")
+            stu_details = Student.query.filter_by(univ_id=detected_face).first()
+            print(stu_details)
+            return render_template('profile.html',stu_details = stu_details)
+        else:
+            print("Im here")
+            return render_template('face_detect.html', noface = True)
+            # return render_template('profile.html',stu_details = stu_details)
+    elif user == 'admin':
+        print("Face Detected : ",face_detected())
+        admin = None
+        detected_face = face_detected()
+        if detected_face != '':
+            print("no im here")
+            admin = Admin.query.filter_by(admin_id=detected_face).first()
+            print(admin)
+            return render_template('userhome.html',admin=admin)
+        else:
+            print("Im here")
+            return render_template('userhome.html', noface = True)
+            # return render_template('profile.html',stu_details = stu_details)
+    else:
+        return redirect(url_for('home'))
+
+
+@app.route('/mark')
+def mark():
+    print(detected_face)
+    res = mark_attendance(detected_face)
+    # curr_student = ''
+    curr_student = Student.query.filter_by(univ_id=detected_face).first()
+    if res == 1:
+        curr_student.attendance = curr_student.attendance + 1
+        db.session.commit()
+        # return "attendance marked"
+        return render_template('profile.html', stu_details = curr_student, status = res)
+    else:
+        # return "attendance already marked"
+        return render_template('profile.html', stu_details = curr_student, status = res)
 
 @app.route("/add",methods=["GET","POST"])
 def add():
@@ -172,8 +224,8 @@ def contact():
         subject=request.form.get('subject')
         msg = Message(
                 subject,
-                sender ='hdevrani81@gmail.com',
-                recipients = ['devranihimanshu81@gmail.com']
+                sender ='anurazsingh001@gmail.com',
+                recipients = ['anuragrawat908@gmail.com']
                )
         msg.body='From : ('+email+" ) "+name+"\n\n"+"Message :"+message
         mail.send(msg)
@@ -181,48 +233,6 @@ def contact():
     else:
         return render_template("contact.html")
 
-
-
-
-@app.route('/face_detect')
-def face_detect():
-    return render_template('face_detect.html')
-
-@app.route('/video')
-def video():
-    return Response(generate_frame(),mimetype='multipart/x-mixed-replace; boundary=frame')
-
-@app.route('/detect')
-def detect():
-    global detected_face
-    print("Face Detected : ",face_detected())
-    stu_details = ''
-    detected_face = face_detected()
-    if detected_face != '':
-        print("no im here")
-        stu_details = Student.query.filter_by(univ_id=detected_face).first()
-        print(stu_details)
-        return render_template('profile.html',stu_details = stu_details)
-    else:
-        print("Im here")
-        return render_template('face_detect.html', noface = True)
-        # return render_template('profile.html',stu_details = stu_details)
-        
-
-@app.route('/mark')
-def mark():
-    print(detected_face)
-    res = mark_attendance(detected_face)
-    # curr_student = ''
-    curr_student = Student.query.filter_by(univ_id=face_detected()).first()
-    if res == 1:
-        curr_student.attendance = curr_student.attendance + 1
-        db.session.commit()
-        # return "attendance marked"
-        return render_template('profile.html', stu_details = curr_student, status = res)
-    else:
-        # return "attendance already marked"
-        return render_template('profile.html', stu_details = curr_student, status = res)
 
 if __name__ == '__main__':
     app.run(debug=True)
