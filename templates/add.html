@@ -27,7 +27,7 @@
       <div class="row m-0 my-2">
         <div class="col-6">
           <label for="inputName">Name</label><br>
-          <input class="form-control" type="text" name="Name" id="inputName" placeholder="Name" required>
+          <input class="form-control" type="text" name="Name" id="inputName" placeholder="Name" maxlength="30" required>
         </div>
         <div class="col-2">
           <label for="inputDOB">D.O.B</label><br>
@@ -52,42 +52,42 @@
         <div class="col-6">
           <label for="inputEmail">Email</label><br>
           <input class="form-control" type="email" name="Email" id="inputEmail"
-          placeholder="abc@xyz.com" required>
+          placeholder="abc@xyz.com" maxlength="30" required>
         </div>
         <div class="col-6">
-          <label for="inputAddress">Corresponding Address</label><br>
-          <input class="form-control" type="text" name="Address" id="inputAddress" placeholder="1234 Main St" required>
+          <label for="inputAddress">Address</label><br>
+          <input class="form-control" type="text" name="Address" id="inputAddress" placeholder="1234 Main St" maxlength="40" required>
         </div>
       </div>
       <div class="row m-0 my-2">
         <div class="col-6">
           <label for="inputGuardian">Father's Name</label><br>
-          <input class="form-control" type="text" name="Guardian" id="inputGuardian" placeholder="Guardian Name" required>
+          <input class="form-control" type="text" name="Guardian" id="inputGuardian" placeholder="Guardian Name" maxlength="30" required>
         </div>
         <div class="col-6">
           <label for="inputContact">Contact Number</label><br>
-          <input class="form-control" type="number" name="Contact" id="inputContact" placeholder="Mobile No" required>
+          <input class="form-control" type="number" name="Contact" id="inputContact" placeholder="Mobile No" max="9999999999" required>
         </div>
       </div>
       <div class="row m-0 my-2">
         <div class="col-6">
           <label for="inputCity">City</label><br>
-          <input class="form-control" type="text" name="City" id="inputCity" required>
+          <input class="form-control" type="text" name="City" id="inputCity" maxlength="20" required>
         </div>
         <div class="col-4">
           <label for="inputState">State</label><br>
-          <input class="form-control" type="text" name="State" id="inputState" required>
+          <input class="form-control" type="text" name="State" id="inputState" maxlength="20" required>
         </div>
         <div class="col-2">
           <label for="inputZip">Zip</label><br>
-          <input class="form-control" type="number" name="Zip" id="inputZip" required>
+          <input class="form-control" type="number" name="Zip" id="inputZip" max="999999" required>
         </div>
       </div>
       <div class="row m-0 my-3">
         <div class="col-12">
           <label for="inputPic">Student Picture</label>
-          <input type="file" name="StudentPic" id="inputpic">
-        </div>
+          <input type="file" name="StudentPic" accept=".jpeg" id="inputpic" required><span>*Please Choose a picture of the student only with face clearly visible*</span>
+        </div>  
       </div>
 
       <h4 class="mx-2">University Info</h4>
@@ -95,31 +95,31 @@
         <div class="row m-0 my-2">
           <div class="col-6">
             <label for="inputRoll">University ID</label><br>
-            <input class="form-control" type="text" name="UniversityId" id="inputRoll"required>
+            <input class="form-control" type="number" name="UniversityId" id="inputRoll" max="99999999999" required>
           </div>
           <div class="col-6">
             <label for="inputUniversity">University</label><br>
-            <input class="form-control" type="text" name="University" id="inputUniversity" required>
+            <input class="form-control" type="text" name="University" id="inputUniversity" maxlength="30" required>
           </div>
         </div>
         <div class="row m-0 my-2">
           <div class="col-6">
             <label for="inputSection">Section</label><br>
-            <input class="form-control" type="text" name="Section" id="inputSection" required>
+            <input class="form-control" type="text" name="Section" id="inputSection" maxlength="2" required>
           </div>
           <div class="col-6">
             <label for="inputCroll">Class Roll No.</label><br>
-            <input class="form-control" type="number" name="ClassRno" id="inputCroll" required>
+            <input class="form-control" type="number" name="ClassRno" id="inputCroll" max="99999" required>
           </div>
         </div>
         <div class="row m-0 my-2">
           <div class="col-6">
             <label for="inputCourse">Course</label><br>
-            <input class="form-control" type="text" name="Course" id="inputCourse" required>
+            <input class="form-control" type="text" name="Course" id="inputCourse" maxlength="10" required>
           </div>
           <div class="col-6">
             <label for="inputSem">Year/Sem</label><br>
-            <input class="form-control" type="number" name="Semester" id="inputSem" required>
+            <input class="form-control" type="number" name="Semester" id="inputSem" maxlength="99" required>
           </div>
         </div>
       <div>
