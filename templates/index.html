@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Attendance</title>
+    <title>RecognizeIt</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- Font Awesome Icons -->
@@ -18,7 +18,7 @@
     <!---Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">Smart Attendance</a>
+          <a class="navbar-brand" href="/">RecognizeIt</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -28,10 +28,10 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('face_detect') }}">Attendance</a>
+                <a class="nav-link" href="{{ url_for('face_detect') }}">Student</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('login') }}">Admin_Login</a>
+                <a class="nav-link" href="{{ url_for('login') }}">Admin</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
@@ -51,13 +51,13 @@
       <div id="carouselExampleControls" class="carousel slide my-5" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../static/images/indeximages/image1.jpeg" class="d-block h-90 w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../static/images/indeximages/image3.png" class="d-block h-90 w-100" alt="...">
+            <img src="../static/images/indeximages/image4.jpg" class="d-block h-90 w-100" alt="...">
           </div>
           <div class="carousel-item">
             <img src="../static/images/indeximages/image1.jpeg" class="d-block h-90 w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/indeximages/image5.jpg" class="d-block h-90 w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -78,10 +78,10 @@
               <h1>Our Services</h1>
           </div>
           <div class="row">
-              <div class="col-6">
-              <img src="../static/images/indeximages/student.png" width="100%">
+              <div class="col-5">
+              <img src="../static/images/indeximages/student.jpg" width="100%" height="95%">
               </div>
-              <div class="col-6">
+              <div class="col-7 flex">
                 <h2>For Students</h2>
                 <h5>This system allows student to mark their Attendance securely</h5>
                 <h5>Key Features:</h5>
@@ -94,7 +94,7 @@
               </div>
           </div>
           <div class="row mt-4">
-            <div class="col-6">
+            <div class="col-7 flex">
               <h2>For Adminstators</h2>
               <h5>This system allows admins to manage students details with a simple user interface</h5>
               <h5>Key Features:</h5>
@@ -106,8 +106,8 @@
               </ul>
               <a href="{{ url_for('login') }}"><button class="btn btn-outline-dark">Login</button></a>
             </div>
-            <div class="col-6">
-            <img src="../static/images/indeximages/student.png" width="100%">
+            <div class="col-5">
+            <img src="../static/images/indeximages/admin.jpg" width="100%" height="95%">
             </div>
           </div>
           
@@ -181,7 +181,7 @@
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2022 Copyright:
-      <a class="text-white" href="/">MDBootstrap.com</a>
+      <a class="text-white" href="/">RecognizeIt</a>
     </div>
     <!-- Copyright -->
   </footer>

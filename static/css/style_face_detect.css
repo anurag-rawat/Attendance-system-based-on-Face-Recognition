@@ -1,9 +1,12 @@
 body{
     margin: 0;
-    background-color: #c0c0c0;
+    /* background-color: #c0c0c0; */
+    background-image: url('../images/indeximages/bg_login.jpg');
+    background-size: cover;
 }
 
 .heading{
+    background-color: rgba(255, 255, 255, 0.6);
     width: 50vw; 
     position: absolute;
     top: 0; 

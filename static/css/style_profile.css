@@ -1,7 +1,6 @@
 body{
-    padding: 0;
-    margin: 0;
-    background-color: #c0c0c0;
+    /* background-color: #c0c0c0; */
+    background-image: url('../images/indeximages/bg_global.jpg');
 }
 
 .container{
@@ -12,15 +11,17 @@ body{
     right: 0; 
     bottom: 0; 
     margin: auto;
+    background-color: rgba(255, 255, 255,0.6);
 }
 
-input[type="text"], input[type="date"]{
-    background-color: white;
-    border-bottom: 1px solid rgb(130, 130, 130);
+
+input[type='text'], input[type='number'], input[type='email'], input[type='date']{
+    border-bottom: 1px solid black;
     border-top: none;
     border-left: none;
     border-right: none;
     width: 100%;
+    background-color: rgba(0,0,0,0);
 }
 
 .student-img{

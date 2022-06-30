@@ -14,7 +14,7 @@
 </head>
 <body>
     <a href="{{ url_for('home') }}"><button type="button" class="m-3 btn btn-outline-dark" title="Home"><i class="bi bi-house-door-fill"></i></button></a>
-    <div class="container my-3 px-0 heading shadow bg-body rounded">
+    <div class="container my-3 px-0 heading shadow rounded">
         <div class="text-center row m-0 text-bg-secondary rounded-top">
             <h4>Detecting Face...</h4>
         </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="container mt-2 px-0" id="button-div">
             <h6>*Click Here when there is any face detected</h6>
-            <a href="{{ url_for('detect', user='admin') }}"><button type="button" class="btn btn-outline-success" id="button" title="Click Here When Face is Detected">Login</button></a>
+            <a href="{{ url_for('detect', user='admin') }}"><button type="button" class="btn btn-outline-dark" id="button" title="Click Here When Face is Detected">Login</button></a>
             <!-- <button type="button" class="btn btn-outline-success" id="button" title="Click Here When Face is Detected" onclick="redirect()">Detect Face</button> -->
             {% if noface %}
             <p id="alert">*No Face Detected</p>
