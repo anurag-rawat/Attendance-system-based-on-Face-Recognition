@@ -10,6 +10,15 @@ images_path = ''
 known_face = []
 known_face_encodings = []
 known_face_names = []
+# For Students
+known_face_student = []
+known_face_encodings_student = []
+known_face_names_student = []
+# For Admin
+known_face_admin = []
+known_face_encodings_admin = []
+known_face_names_admin = []
+
 list_of_names = []
 face_name = ''
 
@@ -36,16 +45,39 @@ def find_encodings():
     print("Encoding Done")
 
 def generate_frame(user):
+    global known_face, known_face_encodings, known_face_names
+    global known_face_admin, known_face_encodings_admin, known_face_names_admin
+    global known_face_student, known_face_encodings_student, known_face_names_student
     set_globals(user)
-    if not known_face:
-        load_images_from_disk()
-    else:
-        print("Images Already Loaded")
-    # print("Face Encodings: ",known_face_encodings)
-    if not known_face_encodings :
-        find_encodings()
-    else:
-        print("Images Already Encoded")
+    if user == 'student':
+        # print("Student, :: ", known_face_student, "face name: ", known_face_names)
+        if len(known_face_student) == 0:
+            known_face, known_face_encodings, known_face_names = [], [], []
+            load_images_from_disk()
+            find_encodings()
+            known_face_student = known_face
+            known_face_encodings_student = known_face_encodings
+            known_face_names_student = known_face_names
+        else:
+            print("Already Loaded & Encoded")
+            known_face = known_face_student
+            known_face_encodings = known_face_encodings_student
+            known_face_names = known_face_names_student
+    elif user == 'admin':
+        # print("Admin, :: ", known_face_admin, "face name: ", known_face_names)
+        if len(known_face_admin) == 0:
+            known_face, known_face_encodings, known_face_names = [], [], []
+            load_images_from_disk()
+            find_encodings()
+            known_face_admin = known_face
+            known_face_encodings_admin = known_face_encodings
+            known_face_names_admin = known_face_names
+        else:
+            print("Already Loaded & Encoded")
+            known_face = known_face_admin
+            known_face_encodings = known_face_encodings_admin
+            known_face_names = known_face_names_admin
+
     camera = cv2.VideoCapture(0)
     while True:
         success, frame = camera.read()
