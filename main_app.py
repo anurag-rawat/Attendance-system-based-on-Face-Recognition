@@ -15,14 +15,14 @@ db = SQLAlchemy(app)
 # Mail Configuration
 app.config['MAIL_SERVER'] ='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'anurazsingh001@gmail.com'
-app.config['MAIL_PASSWORD'] = 'macwrnbupbslstlk'
+app.config['MAIL_USERNAME'] = '<your_gmail>'
+app.config['MAIL_PASSWORD'] = '<your_gmail_app_password>'   # can be generated through your gmail account
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail=Mail(app);
 
 # File Configuration
-app.config['UPLOAD_FOLDER'] = 'D:\\Web Development\\Flask\\Face Recogntion\\static\\images\\Student images'
+app.config['UPLOAD_FOLDER'] = 'D:\\Web Development\\Flask\\Face Recogntion\\static\\images\\Student images' 
 
 detected_face = ''
 
